@@ -1,0 +1,19 @@
+# Benchmark Prompt
+
+Every model is given the exact same prompt below, in a single turn, and the result
+is committed as-is (no follow-up fixes or iteration on the game itself).
+
+## Original Prompt
+
+> create a html based tower defense game, it should have a splash screen, a simple
+> menu and a few levels, the user should be able to build various different, defense
+> structures, the enemy should have multiple different units that move through the
+> mace, it should be visually appealing, you may use open source textures etc to
+> make it look very interesting. the overall style should be TRON inspired, with
+> units and structures resembling the distinctive TRON style.
+
+## Results
+
+| Model | Reasoning effort | Branch / Tag | Date |
+|---|---|---|---|
+| Claude Fable 5 (`claude-fable-5`) | low | `fable-5-low-effort` | 2026-07-07 |
