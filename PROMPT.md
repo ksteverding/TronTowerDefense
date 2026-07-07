@@ -12,8 +12,10 @@ is committed as-is (no follow-up fixes or iteration on the game itself).
 > make it look very interesting. the overall style should be TRON inspired, with
 > units and structures resembling the distinctive TRON style.
 
+See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run.
+
 ## Results
 
-| Model | Reasoning effort | Branch / Tag | Date |
-|---|---|---|---|
-| Claude Fable 5 (`claude-fable-5`) | low | `fable-5-low-effort` | 2026-07-07 |
+| Model | Model ID | Reasoning effort | Branch / Tag | Date |
+|---|---|---|---|---|
+| Claude Fable 5 | `claude-fable-5` | low | `fable-5-low-effort` | 2026-07-07 |
