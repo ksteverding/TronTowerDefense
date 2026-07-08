@@ -29,6 +29,17 @@ const MODELS = [
     available: true,
     href: 'builds/grok-4-5-xhigh/index.html',
   },
+  {
+    id: 'glm-5.2-high',
+    name: 'GLM 5.2',
+    title: 'CIRCUIT BREAKER',
+    effort: 'high reasoning effort',
+    date: '2026-07-08',
+    tag: 'glm-5-2-high',
+    desc: 'Original CIRCUIT BREAKER build. Node, arc, pulse, lance, and barrier breakers across three sectors.',
+    available: true,
+    href: 'builds/glm-5-2-high/index.html',
+  },
 ];
 
 function renderModelCards() {
