@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIGHTWALL — TRON Tower Defense</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="fx-layer" aria-hidden="true"></div>
+
+  <!-- SPLASH -->
+  <section id="screen-splash" class="screen active">
+    <canvas id="splash-canvas"></canvas>
+    <a class="btn ghost hub-link" href="../../index.html" id="btn-hub">← MODELS</a>
+    <div class="splash-center">
+      <p class="eyebrow">ENCOM SYSTEMS // USER ACCESS</p>
+      <h1 class="title-hero">LIGHTWALL</h1>
+      <p class="tagline">DEFEND THE GRID. DEREZ THE INTRUSION.</p>
+      <p class="splash-model">BUILD // GROK 4.5 (grok-4.5-xhigh)</p>
+      <button id="btn-enter" class="btn primary pulse">ENTER THE GRID</button>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="screen-menu" class="screen">
+    <div class="panel">
+      <h1 class="title-panel">LIGHTWALL</h1>
+      <p class="panel-sub">DEFENSE PROTOCOL v1.0</p>
+      <nav class="menu-nav">
+        <button id="btn-play" class="btn primary">INITIATE DEFENSE</button>
+        <button id="btn-levels" class="btn">SELECT SECTOR</button>
+        <button id="btn-howto" class="btn">OPERATOR BRIEFING</button>
+      </nav>
+      <p class="foot-note">IDENTITY DISCS ARMED · LIGHT CYCLES ONLINE</p>
+    </div>
+  </section>
+
+  <!-- LEVEL SELECT -->
+  <section id="screen-levels" class="screen">
+    <div class="panel wide">
+      <h2 class="title-panel sm">SELECT SECTOR</h2>
+      <div id="level-list" class="level-grid"></div>
+      <button id="btn-levels-back" class="btn ghost">← RETURN</button>
+    </div>
+  </section>
+
+  <!-- HOW TO -->
+  <section id="screen-howto" class="screen">
+    <div class="panel wide">
+      <h2 class="title-panel sm">OPERATOR BRIEFING</h2>
+      <div class="howto-grid">
+        <div>
+          <h3>MISSION</h3>
+          <p>Hostile programs stream along the data path toward your Core. Place defense structures on empty grid cells. Survive every wave to secure the sector.</p>
+        </div>
+        <div>
+          <h3>CONTROLS</h3>
+          <p>Pick a structure from the dock, then click a free cell. Click a built structure to upgrade or decommission it. Start each wave when ready.</p>
+        </div>
+        <div>
+          <h3>STRUCTURES</h3>
+          <ul>
+            <li><span class="c-cyan">DISC NODE</span> — rapid identity discs</li>
+            <li><span class="c-amber">LIGHT RIBBON</span> — splash light-wall burst</li>
+            <li><span class="c-violet">RECOGNIZER</span> — heavy slow beam</li>
+            <li><span class="c-lime">BIT RELAY</span> — slows nearby programs</li>
+            <li><span class="c-rose">SAILER LANCE</span> — long-range pierce</li>
+          </ul>
+        </div>
+        <div>
+          <h3>INTRUDERS</h3>
+          <ul>
+            <li><span class="c-cyan">BIT</span> — tiny &amp; fast</li>
+            <li><span class="c-amber">PROGRAM</span> — standard runner</li>
+            <li><span class="c-lime">CYCLE</span> — high speed</li>
+            <li><span class="c-violet">TANK</span> — armored shell</li>
+            <li><span class="c-rose">ISO</span> — elite adaptive code</li>
+          </ul>
+        </div>
+      </div>
+      <button id="btn-howto-back" class="btn ghost">← RETURN</button>
+    </div>
+  </section>
+
+  <!-- GAME -->
+  <section id="screen-game" class="screen">
+    <div class="game-shell">
+      <header class="hud">
+        <div class="hud-left">
+          <span id="hud-sector">SECTOR 01</span>
+          <span id="hud-wave">WAVE 0 / 0</span>
+        </div>
+        <div class="hud-right">
+          <span id="hud-energy" class="stat energy">ENERGY 0</span>
+          <span id="hud-lives" class="stat lives">CORE 0</span>
+          <button id="btn-speed" class="btn tiny">×1</button>
+          <button id="btn-wave" class="btn tiny primary">START WAVE</button>
+          <button id="btn-menu" class="btn tiny ghost">ABORT</button>
+        </div>
+      </header>
+      <canvas id="game" width="960" height="576"></canvas>
+      <div id="tower-dock" class="tower-dock"></div>
+      <div id="tower-sheet" class="tower-sheet hidden">
+        <div id="sheet-body"></div>
+        <div class="sheet-actions">
+          <button id="btn-upgrade" class="btn tiny primary">UPGRADE</button>
+          <button id="btn-sell" class="btn tiny danger">DECOM</button>
+          <button id="btn-sheet-close" class="btn tiny ghost">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="screen-result" class="screen">
+    <div class="panel">
+      <h2 id="result-title" class="title-panel sm">SECTOR SECURE</h2>
+      <p id="result-body" class="result-body"></p>
+      <div class="menu-nav">
+        <button id="btn-next" class="btn primary">NEXT SECTOR</button>
+        <button id="btn-retry" class="btn">RETRY</button>
+        <button id="btn-result-menu" class="btn ghost">MAIN MENU</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
