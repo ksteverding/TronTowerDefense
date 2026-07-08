@@ -21,3 +21,4 @@ See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run
 | Claude Fable 5 | `claude-fable-5` | low | `fable-5-low-effort` | 2026-07-07 |
 | Grok 4.5 | `grok-4.5-xhigh` | xhigh | `grok-4-5-xhigh` | 2026-07-08 |
 | GLM 5.2 | `glm-5.2-high` | high | `glm-5-2-high` | 2026-07-08 |
+| GPT-5.5 | `gpt-5.5-default` | default | `gpt-5-5-default` | 2026-07-08 |

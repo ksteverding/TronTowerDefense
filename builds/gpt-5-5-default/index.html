@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEON CONDUIT - TRON Tower Defense</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Electrolize&family=Oxanium:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="ambient"></canvas>
+
+  <section id="splash" class="screen active">
+    <a class="btn hub-link" href="../../index.html">BACK TO MODELS</a>
+    <div class="center">
+      <p class="overline">GRID MAINTENANCE DAEMON</p>
+      <h1>NEON<br>CONDUIT</h1>
+      <p class="tag">Route power. Hold the core. Derezz the swarm.</p>
+      <p class="build-tag">BUILD // GPT-5.5 (gpt-5-5-default)</p>
+      <button id="enter" class="btn primary">BOOT SEQUENCE</button>
+    </div>
+  </section>
+
+  <section id="menu" class="screen">
+    <div class="panel">
+      <h2>NEON CONDUIT</h2>
+      <p class="sub">A TRON-inspired defense simulation</p>
+      <button id="play" class="btn primary">START RUN</button>
+      <button id="levels" class="btn">CHOOSE CIRCUIT</button>
+      <button id="help" class="btn">FIELD MANUAL</button>
+      <p class="small">Static HTML5 benchmark build - GPT-5.5</p>
+    </div>
+  </section>
+
+  <section id="level-screen" class="screen">
+    <div class="panel wide">
+      <h2>CHOOSE CIRCUIT</h2>
+      <div id="level-list" class="cards"></div>
+      <button id="level-back" class="btn back">BACK</button>
+    </div>
+  </section>
+
+  <section id="help-screen" class="screen">
+    <div class="panel wide">
+      <h2>FIELD MANUAL</h2>
+      <div class="manual">
+        <div><b>Goal</b><p>Programs move through the maze toward your core. Build towers on empty cells and survive every wave.</p></div>
+        <div><b>Build</b><p>Select a tower in the dock, then click a free grid cell. Path cells and occupied cells cannot be used.</p></div>
+        <div><b>Upgrade</b><p>Click an existing tower to upgrade or recycle it. Upgrades improve damage, range, and fire speed.</p></div>
+        <div><b>Threats</b><p>Bits are fast, Runners swarm, Shells are armored, Phantoms are quick elites, and Overseers are bosses.</p></div>
+      </div>
+      <button id="help-back" class="btn back">BACK</button>
+    </div>
+  </section>
+
+  <section id="game-screen" class="screen">
+    <div class="game">
+      <header class="hud">
+        <span id="hud-level">CIRCUIT 1</span>
+        <span id="hud-wave">WAVE 0/0</span>
+        <span id="hud-power">POWER 0</span>
+        <span id="hud-core">CORE 0</span>
+        <button id="speed" class="mini">x1</button>
+        <button id="wave" class="mini primary">LAUNCH</button>
+        <button id="quit" class="mini">QUIT</button>
+      </header>
+      <canvas id="board" width="900" height="600"></canvas>
+      <div id="dock" class="dock"></div>
+      <div id="tower-pop" class="popup hidden">
+        <div id="tower-info"></div>
+        <button id="upgrade" class="mini primary">UPGRADE</button>
+        <button id="sell" class="mini danger">RECYCLE</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="screen">
+    <div class="panel">
+      <h2 id="result-title">CIRCUIT HELD</h2>
+      <p id="result-text" class="sub"></p>
+      <button id="next" class="btn primary">NEXT CIRCUIT</button>
+      <button id="retry" class="btn">RETRY</button>
+      <button id="result-menu" class="btn back">MENU</button>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>

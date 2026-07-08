@@ -40,6 +40,17 @@ const MODELS = [
     available: true,
     href: 'builds/glm-5-2-high/index.html',
   },
+  {
+    id: 'gpt-5.5-default',
+    name: 'GPT-5.5',
+    title: 'NEON CONDUIT',
+    effort: 'default reasoning effort',
+    date: '2026-07-08',
+    tag: 'gpt-5-5-default',
+    desc: 'Original NEON CONDUIT build. Ray, split, quake, frost, and rail towers against routed hostile programs.',
+    available: true,
+    href: 'builds/gpt-5-5-default/index.html',
+  },
 ];
 
 function renderModelCards() {
