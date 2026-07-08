@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIRCUIT BREAKER — TRON Tower Defense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <!-- SPLASH -->
+  <section id="s-splash" class="screen on">
+    <a class="btn ghost hub-link" href="../../index.html">← MODELS</a>
+    <div class="splash-inner">
+      <p class="kicker">ENCOM // SECURE BOOT</p>
+      <h1 class="hero">CIRCUIT<br>BREAKER</h1>
+      <p class="strap">TRACE THE GRID. BREAK THE SIEGE.</p>
+      <p class="build-tag">BUILD // GLM 5.2 (glm-5.2-high)</p>
+      <button id="b-enter" class="btn go">INITIALIZE</button>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="s-menu" class="screen">
+    <div class="panel">
+      <h1 class="title">CIRCUIT BREAKER</h1>
+      <p class="sub">DEFENSE PROTOCOL</p>
+      <nav class="nav">
+        <button id="b-play" class="btn">START DEFENSE</button>
+        <button id="b-sectors" class="btn">SELECT SECTOR</button>
+        <button id="b-help" class="btn">OPERATOR MANUAL</button>
+      </nav>
+      <p class="foot">LIGHT CYCLES STANDBY · IDENTITY DISCS ARMED</p>
+    </div>
+  </section>
+
+  <!-- SECTOR SELECT -->
+  <section id="s-sectors" class="screen">
+    <div class="panel wide">
+      <h2 class="title sm">SELECT SECTOR</h2>
+      <div id="sector-list" class="sectors"></div>
+      <button id="b-sectors-back" class="btn ghost">← BACK</button>
+    </div>
+  </section>
+
+  <!-- MANUAL -->
+  <section id="s-help" class="screen">
+    <div class="panel wide">
+      <h2 class="title sm">OPERATOR MANUAL</h2>
+      <div class="help-grid">
+        <div>
+          <h3>OBJECTIVE</h3>
+          <p>Hostile code flows along the trace toward the Core. Place breakers on open nodes to derez every wave and hold the sector.</p>
+        </div>
+        <div>
+          <h3>CONTROLS</h3>
+          <p>Select a breaker from the dock, click an open node to build. Click a built breaker to upgrade or recycle. Launch each wave when ready.</p>
+        </div>
+        <div>
+          <h3>BREAKERS</h3>
+          <ul>
+            <li><span class="c-c">NODE</span> — rapid trace fire</li>
+            <li><span class="c-o">ARC</span> — chains between foes</li>
+            <li><span class="c-m">PULSE</span> — area detonation</li>
+            <li><span class="c-v">LANCE</span> — long-range pierce</li>
+            <li><span class="c-g">BARRIER</span> — slowing field</li>
+          </ul>
+        </div>
+        <div>
+          <h3>HOSTILES</h3>
+          <ul>
+            <li><span class="c-c">WISP</span> — tiny, swift</li>
+            <li><span class="c-o">DRONE</span> — balanced runner</li>
+            <li><span class="c-g">BUG</span> — swarm unit</li>
+            <li><span class="c-v">SENTRY</span> — armored</li>
+            <li><span class="c-r">MCP</span> — elite core</li>
+          </ul>
+        </div>
+      </div>
+      <button id="b-help-back" class="btn ghost">← BACK</button>
+    </div>
+  </section>
+
+  <!-- GAME -->
+  <section id="s-game" class="screen">
+    <div class="shell">
+      <header class="hud">
+        <div class="hud-l">
+          <span id="h-sector">SECTOR 01</span>
+          <span id="h-wave">WAVE 0/0</span>
+        </div>
+        <div class="hud-r">
+          <span id="h-energy" class="st e">PWR 0</span>
+          <span id="h-core" class="st c">CORE 0</span>
+          <button id="b-speed" class="btn sm">×1</button>
+          <button id="b-launch" class="btn sm go">LAUNCH WAVE</button>
+          <button id="b-abort" class="btn sm ghost">ABORT</button>
+        </div>
+      </header>
+      <canvas id="board" width="960" height="600"></canvas>
+      <div id="dock" class="dock"></div>
+      <div id="sheet" class="sheet hidden">
+        <div id="sheet-info"></div>
+        <div class="sheet-act">
+          <button id="b-up" class="btn sm go">UPGRADE</button>
+          <button id="b-recycle" class="btn sm danger">RECYCLE</button>
+          <button id="b-sheet-close" class="btn sm ghost">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="s-result" class="screen">
+    <div class="panel">
+      <h2 id="r-title" class="title sm">SECTOR HELD</h2>
+      <p id="r-body" class="r-body"></p>
+      <div class="nav">
+        <button id="b-next" class="btn go">NEXT SECTOR</button>
+        <button id="b-retry" class="btn">RETRY</button>
+        <button id="b-result-menu" class="btn ghost">MENU</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>

@@ -12,6 +12,7 @@ index.html / hub.js / style.css   ← model-select hub
 builds/
   fable-5-low-effort/             ← Claude Fable 5 (GRID DEFENSE)
   grok-4-5-xhigh/                 ← Grok 4.5 (LIGHTWALL)
+  glm-5-2-high/                   ← GLM 5.2 (CIRCUIT BREAKER)
 ```
 
 Each run also lives on its own git branch/tag so any two attempts can be diffed
@@ -24,6 +25,7 @@ the rules / workflow for adding a new run are in [BENCHMARK.md](BENCHMARK.md).
 |---|---|---|---|---|
 | Claude Fable 5 | `claude-fable-5` | low | `builds/fable-5-low-effort/` | `fable-5-low-effort` |
 | Grok 4.5 | `grok-4.5-xhigh` | xhigh | `builds/grok-4-5-xhigh/` | `grok-4-5-xhigh` |
+| GLM 5.2 | `glm-5.2-high` | high | `builds/glm-5-2-high/` | `glm-5-2-high` |
 
 To add a new model to the hub: drop its files under `builds/<tag>/` and append an
 entry to the `MODELS` array in `hub.js`.
