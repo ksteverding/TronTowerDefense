@@ -19,3 +19,4 @@ See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run
 | Model | Model ID | Reasoning effort | Branch / Tag | Date |
 |---|---|---|---|---|
 | Claude Fable 5 | `claude-fable-5` | low | `fable-5-low-effort` | 2026-07-07 |
+| Grok 4.5 | `grok-4.5-xhigh` | xhigh | `grok-4-5-xhigh` | 2026-07-08 |
