@@ -45,11 +45,20 @@ git push -u origin <model>-<effort> --tags
 
 ## After the run
 
-1. Switch back to `main` and add a row to the results table in
-   [PROMPT.md](PROMPT.md): model, model ID, effort, branch/tag, date.
-2. Push `main`.
-3. Do **not** merge run branches into `main`. `main` holds the docs plus one
-   showcase version (currently the Fable 5 low-effort run).
+1. Switch back to `main`.
+2. Copy the run's game files into the hub:
+   ```bash
+   mkdir -p builds/<model>-<effort>
+   git checkout <model>-<effort> -- index.html style.css game.js
+   mv index.html style.css game.js builds/<model>-<effort>/
+   ```
+3. Register the build in `hub.js` (`MODELS` array) with `href: 'builds/<model>-<effort>/index.html'`.
+4. Add a row to the results table in [PROMPT.md](PROMPT.md): model, model ID,
+   effort, branch/tag, date. Update [README.md](README.md) if it lists builds.
+5. Commit and push `main`.
+6. Keep the orphan run branch/tag for side-by-side diffs — do **not** merge the
+   orphan branch itself into `main`. `main` holds the hub plus a copy of each
+   showcased build under `builds/`.
 
 ## Evaluation criteria (for human comparison)
 
