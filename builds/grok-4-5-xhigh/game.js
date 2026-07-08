@@ -150,6 +150,15 @@ function buildPath(level) {
   G.pathPts = [];
   G.pathCells = new Set();
   const pts = level.path;
+  const pushPt = (c, r) => {
+    if (c >= 0 && c < COLS && r >= 0 && r < ROWS) G.pathCells.add(cellKey(c, r));
+    const p = cellCenter(c, r);
+    const last = G.pathPts[G.pathPts.length - 1];
+    // Skip consecutive duplicates at corners — zero-length segments permanently
+    // stall slowed enemies (step never reaches d==0), so waves never finish.
+    if (last && last.x === p.x && last.y === p.y) return;
+    G.pathPts.push(p);
+  };
   for (let i = 0; i < pts.length - 1; i++) {
     let [c0, r0] = pts[i];
     let [c1, r1] = pts[i + 1];
@@ -157,8 +166,7 @@ function buildPath(level) {
     const dr = Math.sign(r1 - r0);
     let c = c0, r = r0;
     while (true) {
-      if (c >= 0 && c < COLS && r >= 0 && r < ROWS) G.pathCells.add(cellKey(c, r));
-      G.pathPts.push(cellCenter(c, r));
+      pushPt(c, r);
       if (c === c1 && r === r1) break;
       c += dc; r += dr;
     }
@@ -166,10 +174,10 @@ function buildPath(level) {
   // extend spawn/exit slightly off-grid for smoother entry/exit
   const first = G.pathPts[0];
   const last = G.pathPts[G.pathPts.length - 1];
-  const pre = { x: first.x - CELL, y: first.y };
-  const post = { x: last.x + CELL, y: last.y };
-  if (level.path[0][0] < 0) G.pathPts.unshift(pre);
-  if (level.path[level.path.length - 1][0] >= COLS) G.pathPts.push(post);
+  if (level.path[0][0] < 0) G.pathPts.unshift({ x: first.x - CELL, y: first.y });
+  if (level.path[level.path.length - 1][0] >= COLS) {
+    G.pathPts.push({ x: last.x + CELL, y: last.y });
+  }
 }
 
 /* ---------- UI wiring ---------- */
@@ -610,26 +618,34 @@ function update(dt) {
       e.slowT -= dt;
       if (e.slowT <= 0) e.slow = 1;
     }
-    const target = G.pathPts[e.pathIdx + 1];
-    if (!target) {
-      e.dead = true;
-      G.lives--;
-      burst(e.x, e.y, '#ff4d8d', 16);
-      updateHud();
-      continue;
-    }
-    const dx = target.x - e.x, dy = target.y - e.y;
-    const d = Math.hypot(dx, dy) || 1;
-    const step = e.speed * e.slow * dt;
-    if (step >= d) {
-      e.x = target.x; e.y = target.y;
-      e.pathIdx++;
-    } else {
-      e.x += (dx / d) * step;
-      e.y += (dy / d) * step;
+    let budget = e.speed * e.slow * dt;
+    while (budget > 0 && !e.dead) {
+      const target = G.pathPts[e.pathIdx + 1];
+      if (!target) {
+        e.dead = true;
+        G.lives--;
+        burst(e.x, e.y, '#ff4d8d', 16);
+        break;
+      }
+      const dx = target.x - e.x, dy = target.y - e.y;
+      const d = Math.hypot(dx, dy);
+      // Skip degenerate / already-reached waypoints instead of stalling forever.
+      if (d < 0.001) { e.pathIdx++; continue; }
+      if (budget >= d) {
+        e.x = target.x; e.y = target.y;
+        e.pathIdx++;
+        budget -= d;
+      } else {
+        e.x += (dx / d) * budget;
+        e.y += (dy / d) * budget;
+        budget = 0;
+      }
     }
   }
+  const before = G.enemies.length;
   G.enemies = G.enemies.filter((e) => !e.dead);
+  // Re-enable START WAVE / refresh HUD when the last enemy of a wave dies.
+  if (before !== G.enemies.length) updateHud();
 
   // towers
   for (const t of G.towers) {
@@ -644,8 +660,9 @@ function update(dt) {
     t.cooldown = Math.max(0, t.cooldown - dt);
     const target = nearestEnemy(t, range);
     if (target) {
+      // Always track while a target is in range (not only on the fire tick).
       t.angle = Math.atan2(target.y - t.y, target.x - t.x);
-      if (t.cooldown <= 0) {
+      if (t.cooldown <= 0 && def.rate > 0) {
         fire(t, target);
         t.cooldown = 1 / scaled(def.rate, t);
       }
@@ -681,6 +698,12 @@ function update(dt) {
     }
   }
   G.shots = G.shots.filter((s) => s.life > 0);
+
+  // Remove enemies killed by shots this frame so wave-clear / HUD update immediately.
+  if (G.enemies.some((e) => e.dead)) {
+    G.enemies = G.enemies.filter((e) => !e.dead);
+    updateHud();
+  }
 
   // particles
   for (const p of G.particles) {
