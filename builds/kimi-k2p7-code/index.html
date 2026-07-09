@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEON SENTINEL — TRON Tower Defense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="screen-splash" class="screen active">
+  <div class="grid-bg"></div>
+  <div class="menu-content">
+    <h1 class="glitch" data-text="NEON SENTINEL">NEON SENTINEL</h1>
+    <div class="logo-line"></div>
+    <p class="subtitle">GRID DEFENSE PROTOCOL</p>
+    <p class="model-hint">Build defensive nodes. Route hostile programs. Protect the core.</p>
+    <button class="neon-btn" onclick="showScreen('menu')">ENTER SYSTEM</button>
+    <p class="menu-footer">ENCOM INTERNATIONAL // SENTINEL MAINFRAME</p>
+  </div>
+</div>
+
+<div id="screen-menu" class="screen">
+  <div class="grid-bg"></div>
+  <div class="menu-content">
+    <h1 class="glitch small" data-text="NEON SENTINEL">NEON SENTINEL</h1>
+    <div class="logo-line"></div>
+    <p class="subtitle">SELECT PROTOCOL</p>
+    <div class="menu-grid">
+      <button class="neon-btn" onclick="showScreen('levels')">NEW RUN</button>
+      <button class="neon-btn" onclick="showScreen('help')">FIELD MANUAL</button>
+    </div>
+    <p class="menu-footer">SYSTEM READY</p>
+  </div>
+</div>
+
+<div id="screen-help" class="screen">
+  <div class="grid-bg"></div>
+  <div class="menu-content wide help-panel">
+    <h2 class="panel-title">FIELD MANUAL</h2>
+    <div class="help-sections">
+      <div class="help-section">
+        <h3>OBJECTIVE</h3>
+        <p>Hostile programs traverse the grid path toward your core. Build towers on empty cells to destroy them before they breach the system.</p>
+      </div>
+      <div class="help-section">
+        <h3>ENERGY</h3>
+        <p>Earn energy by destroying enemies. Spend energy to build and upgrade towers. Survive all waves to secure the sector.</p>
+      </div>
+      <div class="help-section">
+        <h3>TOWERS</h3>
+        <ul>
+          <li><span class="tag cyan">BEAM</span> Reliable single-target damage.</li>
+          <li><span class="tag magenta">PULSE</span> Area damage around the impact point.</li>
+          <li><span class="tag orange">GLITCH</span> Slows programs inside its field.</li>
+          <li><span class="tag purple">SNIPER</span> Extreme range and damage, slow fire.</li>
+          <li><span class="tag lime">RELAY</span> Rapid low-damage shots, short range.</li>
+        </ul>
+      </div>
+      <div class="help-section">
+        <h3>CONTROLS</h3>
+        <p>Click a tower button, then click a grid cell to build. Click an existing tower to upgrade or sell. Use the speed buttons to accelerate time.</p>
+      </div>
+    </div>
+    <button class="neon-btn" onclick="showScreen('menu')">RETURN</button>
+  </div>
+</div>
+
+<div id="screen-levels" class="screen">
+  <div class="grid-bg"></div>
+  <div class="menu-content wide">
+    <h2 class="panel-title">SECTOR SELECT</h2>
+    <div class="level-cards" id="level-cards"></div>
+    <button class="neon-btn" onclick="showScreen('menu')">RETURN</button>
+  </div>
+</div>
+
+<div id="screen-game" class="screen">
+  <div class="game-frame">
+    <div class="hud top-hud">
+      <div class="hud-group">
+        <div class="hud-cell"><span class="hud-label">SECTOR</span><span id="hud-level" class="hud-value">01</span></div>
+        <div class="hud-cell"><span class="hud-label">WAVE</span><span id="hud-wave" class="hud-value">1 / 8</span></div>
+        <div class="hud-cell"><span class="hud-label">ENERGY</span><span id="hud-energy" class="hud-value">0</span></div>
+        <div class="hud-cell"><span class="hud-label">INTEGRITY</span><span id="hud-lives" class="hud-value">20</span></div>
+      </div>
+      <div class="hud-group">
+        <button id="btn-pause" class="hud-btn" onclick="togglePause()">PAUSE</button>
+        <button id="btn-speed" class="hud-btn" onclick="toggleSpeed()">1x</button>
+        <button class="hud-btn" onclick="confirmExit()">EXIT</button>
+      </div>
+    </div>
+
+    <div class="game-body">
+      <canvas id="game-canvas" width="960" height="540"></canvas>
+
+      <div class="sidebar">
+        <div class="tower-panel">
+          <h3 class="panel-title">BUILD NODES</h3>
+          <div class="tower-list" id="tower-list"></div>
+        </div>
+
+        <div class="info-panel" id="info-panel">
+          <h3 class="panel-title">SYSTEM LOG</h3>
+          <div class="info-text" id="info-text">Select a tower to begin construction.</div>
+        </div>
+
+        <div class="selection-panel" id="selection-panel" style="display:none">
+          <h3 class="panel-title">NODE INSPECT</h3>
+          <div class="info-text" id="selection-text"></div>
+          <div class="selection-actions">
+            <button class="neon-btn small" onclick="upgradeSelected()">UPGRADE</button>
+            <button class="neon-btn small secondary" onclick="sellSelected()">SELL</button>
+          </div>
+        </div>
+
+        <div class="wave-panel">
+          <h3 class="panel-title">WAVE CONTROL</h3>
+          <button class="neon-btn" id="btn-start-wave" onclick="startNextWave()">START WAVE</button>
+          <div class="wave-status" id="wave-status">Waiting for operator...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal" class="modal-overlay">
+  <div class="modal-box">
+    <h2 id="modal-title" class="panel-title">PROTOCOL COMPLETE</h2>
+    <p id="modal-message">Sector secured.</p>
+    <div class="modal-actions">
+      <button class="neon-btn" id="modal-primary" onclick="modalPrimary()">CONTINUE</button>
+      <button class="neon-btn secondary" onclick="hideModal()">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
