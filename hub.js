@@ -51,6 +51,17 @@ const MODELS = [
     available: true,
     href: 'builds/gpt-5-5-default/index.html',
   },
+  {
+    id: 'kimi-k2p7-code',
+    name: 'Kimi K2.7 Code',
+    title: 'NEON SENTINEL',
+    effort: 'default reasoning effort',
+    date: '2026-07-09',
+    tag: 'kimi-k2p7-code-default',
+    desc: 'Original NEON SENTINEL build. Beam, pulse, glitch, sniper, and relay towers against probe, drone, tank, surge, and virus programs across three sectors.',
+    available: true,
+    href: 'builds/kimi-k2p7-code/index.html',
+  },
 ];
 
 function renderModelCards() {
