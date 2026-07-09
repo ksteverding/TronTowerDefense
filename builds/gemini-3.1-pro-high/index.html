@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Grid Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Splash Screen -->
+        <div id="splash-screen" class="screen visible">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h1 class="neon-text blue">NEON <br> GRID DEFENSE</h1>
+                <p>INITIALIZING SYSTEM...</p>
+                <button id="btn-enter" class="cyber-btn">ENTER GRID</button>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen">
+            <div class="grid-bg"></div>
+            <div class="content">
+                <h2 class="neon-text cyan">SELECT SECTOR</h2>
+                <div class="level-list">
+                    <button class="cyber-btn level-btn" data-level="1">SECTOR 1: INGRESS</button>
+                    <button class="cyber-btn level-btn" data-level="2">SECTOR 2: DATA STREAM</button>
+                    <button class="cyber-btn level-btn" data-level="3">SECTOR 3: MAINFRAME</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game UI -->
+        <div id="game-ui" class="screen">
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+            
+            <div class="sidebar">
+                <div class="stats-panel">
+                    <div class="stat"><span class="label">MEMORY (BITS):</span> <span id="ui-credits" class="neon-text cyan">100</span></div>
+                    <div class="stat"><span class="label">CORE INTEGRITY:</span> <span id="ui-lives" class="neon-text pink">20</span></div>
+                    <div class="stat"><span class="label">WAVE:</span> <span id="ui-wave" class="neon-text orange">1</span>/<span id="ui-max-wave">5</span></div>
+                </div>
+
+                <div class="build-menu">
+                    <h3>DEFENSE PROTOCOLS</h3>
+                    <div class="tower-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="btn-start-wave" class="cyber-btn small">EXECUTE WAVE</button>
+                    <button id="btn-quit" class="cyber-btn small warning">DISCONNECT</button>
+                </div>
+            </div>
+            
+            <div id="game-overlay" class="overlay hidden">
+                <h2 id="overlay-title" class="neon-text"></h2>
+                <p id="overlay-desc"></p>
+                <button id="btn-overlay-action" class="cyber-btn"></button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

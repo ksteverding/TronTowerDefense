@@ -62,6 +62,17 @@ const MODELS = [
     available: true,
     href: 'builds/kimi-k2p7-code/index.html',
   },
+  {
+    id: 'gemini-3.1-pro',
+    name: 'Gemini 3.1 Pro',
+    title: 'NEON GRID DEFENSE',
+    effort: 'high reasoning effort',
+    date: '2026-07-09',
+    tag: 'gemini-3.1-pro-high',
+    desc: 'Original NEON GRID DEFENSE build. Beam, pulse, sapper, and burst towers against hostile programs across three sectors.',
+    available: true,
+    href: 'builds/gemini-3.1-pro-high/index.html',
+  },
 ];
 
 function renderModelCards() {

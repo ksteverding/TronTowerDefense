@@ -15,6 +15,7 @@ builds/
   glm-5-2-high/                   ← GLM 5.2 (CIRCUIT BREAKER)
   gpt-5-5-default/                ← GPT-5.5 (NEON CONDUIT)
   kimi-k2p7-code/                 ← Kimi K2.7 Code (NEON SENTINEL)
+  gemini-3.1-pro-high/            ← Gemini 3.1 Pro (NEON GRID DEFENSE)
 ```
 
 Each run also lives on its own git branch/tag so any two attempts can be diffed
@@ -30,6 +31,7 @@ the rules / workflow for adding a new run are in [BENCHMARK.md](BENCHMARK.md).
 | GLM 5.2 | `glm-5.2-high` | high | `builds/glm-5-2-high/` | `glm-5-2-high` |
 | GPT-5.5 | `gpt-5.5-default` | default | `builds/gpt-5-5-default/` | `gpt-5.5-default` |
 | Kimi K2.7 Code | `kimi-k2p7-code` | default | `builds/kimi-k2p7-code/` | `kimi-k2p7-code-default` |
+| Gemini 3.1 Pro | `gemini-3.1-pro` | high | `builds/gemini-3.1-pro-high/` | `gemini-3.1-pro-high` |
 
 To add a new model to the hub: drop its files under `builds/<tag>/` and append an
 entry to the `MODELS` array in `hub.js`.

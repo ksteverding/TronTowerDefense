@@ -23,3 +23,4 @@ See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run
 | GLM 5.2 | `glm-5.2-high` | high | `glm-5-2-high` | 2026-07-08 |
 | GPT-5.5 | `gpt-5.5-default` | default | `gpt-5-5-default` | 2026-07-08 |
 | Kimi K2.7 Code | `kimi-k2p7-code` | default | `kimi-k2p7-code-default` | 2026-07-09 |
+| Gemini 3.1 Pro | `gemini-3.1-pro` | high | `gemini-3.1-pro-high` | 2026-07-09 |
