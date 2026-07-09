@@ -459,7 +459,13 @@ function loop(timestamp) {
 }
 
 function updateSpawning(step) {
-  if (!state.waveActive || state.spawnQueue.length === 0) return;
+  if (!state.waveActive) return;
+
+  if (state.spawnQueue.length === 0) {
+    if (state.enemies.length === 0) endWave();
+    return;
+  }
+
   state.spawnTimer += step * 60;
   while (state.spawnQueue.length > 0 && state.spawnTimer >= state.spawnQueue[0].delay) {
     const item = state.spawnQueue.shift();
@@ -467,9 +473,6 @@ function updateSpawning(step) {
     if (state.spawnQueue.length > 0) {
       state.spawnTimer = Math.min(state.spawnTimer, state.spawnQueue[0].delay);
     }
-  }
-  if (state.spawnQueue.length === 0 && state.enemies.length === 0) {
-    endWave();
   }
 }
 
