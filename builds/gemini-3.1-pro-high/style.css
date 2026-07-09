@@ -1,0 +1,269 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    user-select: none;
+}
+
+body {
+    background-color: #050505;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-container {
+    position: relative;
+    width: 1050px;
+    height: 600px;
+    background: #000;
+    border: 2px solid #0ff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 10;
+}
+
+.screen.visible {
+    display: flex;
+}
+
+/* Background Grids */
+.grid-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    transform: perspective(500px) rotateX(60deg) scale(2);
+    transform-origin: bottom center;
+    animation: gridMove 5s linear infinite;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+/* Typography & Neon */
+.content {
+    margin: auto;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border: 1px solid #0ff;
+    box-shadow: 0 0 15px #0ff;
+}
+
+.neon-text {
+    font-weight: 900;
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 20px currentColor;
+    letter-spacing: 2px;
+}
+
+.neon-text.blue { color: #08f; }
+.neon-text.cyan { color: #0ff; }
+.neon-text.pink { color: #f0f; }
+.neon-text.orange { color: #f90; }
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.cyber-btn {
+    background: transparent;
+    color: #0ff;
+    border: 2px solid #0ff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.cyber-btn:hover {
+    background: #0ff;
+    color: #000;
+    box-shadow: 0 0 20px #0ff;
+}
+
+.cyber-btn.small {
+    padding: 10px 15px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.cyber-btn.warning {
+    color: #f0f;
+    border-color: #f0f;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.3);
+}
+.cyber-btn.warning:hover {
+    background: #f0f;
+    color: #000;
+    box-shadow: 0 0 20px #f0f;
+}
+
+/* Main Menu */
+.level-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Game UI */
+#game-ui {
+    display: none;
+    flex-direction: row;
+}
+
+#game-ui.visible {
+    display: flex;
+}
+
+#game-canvas {
+    background-color: #050510;
+    cursor: crosshair;
+}
+
+.sidebar {
+    width: 250px;
+    background: #0a0a1a;
+    border-left: 2px solid #0ff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stats-panel {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #0ff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.stat .label {
+    color: #aaa;
+}
+
+.build-menu {
+    flex-grow: 1;
+}
+
+.build-menu h3 {
+    color: #0ff;
+    font-size: 1rem;
+    border-bottom: 1px solid #0ff;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.tower-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tower-card {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.tower-card:hover {
+    border-color: #0ff;
+    background: rgba(0, 255, 255, 0.1);
+}
+
+.tower-card.selected {
+    border-color: #0ff;
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px #0ff;
+}
+
+.tower-card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #333 !important;
+}
+
+.tower-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.tower-cost {
+    color: #0ff;
+}
+
+.tower-desc {
+    font-size: 0.75rem;
+    color: #aaa;
+}
+
+.controls {
+    margin-top: auto;
+}
+
+/* Overlays */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 800px; height: 600px; /* Over canvas only */
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+#overlay-desc {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 25px;
+}
