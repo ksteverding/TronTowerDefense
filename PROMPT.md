@@ -24,3 +24,4 @@ See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run
 | GPT-5.5 | `gpt-5.5-default` | default | `gpt-5-5-default` | 2026-07-08 |
 | Kimi K2.7 Code | `kimi-k2p7-code` | default | `kimi-k2p7-code-default` | 2026-07-09 |
 | Gemini 3.1 Pro | `gemini-3.1-pro` | high | `gemini-3.1-pro-high` | 2026-07-09 |
+| Poolside Laguna | `poolside-laguna` | default | `poolside-laguna-default` | 2026-07-18 |

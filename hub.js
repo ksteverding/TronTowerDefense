@@ -73,6 +73,17 @@ const MODELS = [
     available: true,
     href: 'builds/gemini-3.1-pro-high/index.html',
   },
+  {
+    id: 'poolside-laguna',
+    name: 'Poolside Laguna',
+    title: 'NEURAL PATHWAY',
+    effort: 'default reasoning effort',
+    date: '2026-07-18',
+    tag: 'poolside-laguna-default',
+    desc: 'My own interpretation of TRON tower defense. Beam, pulse, tesla, and disc towers with clean, modular code.',
+    available: true,
+    href: 'builds/poolside-laguna-default/index.html',
+  },
 ];
 
 function renderModelCards() {
