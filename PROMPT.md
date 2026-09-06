@@ -1,7 +1,8 @@
 # Benchmark Prompt
 
-Every model is given the exact same prompt below, in a single turn, and the result
-is committed as-is (no follow-up fixes or iteration on the game itself).
+Original benchmark models are given the exact same prompt below, in a single
+turn, and the result is committed as-is (no follow-up fixes or iteration on the
+game itself). Custom runs with different briefs are listed separately below.
 
 ## Original Prompt
 
@@ -25,3 +26,26 @@ See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run
 | Kimi K2.7 Code | `kimi-k2p7-code` | default | `kimi-k2p7-code-default` | 2026-07-09 |
 | Gemini 3.1 Pro | `gemini-3.1-pro` | high | `gemini-3.1-pro-high` | 2026-07-09 |
 | Poolside Laguna | `poolside-laguna` | default | `poolside-laguna-default` | 2026-07-18 |
+
+## Custom runs
+
+### END OF LINE — GPT-6
+
+- **Model:** `gpt-6`; default reasoning effort; 2026-09-06.
+- **Directory:** `builds/gpt-6-end-of-line/`. This is a directory label, not a claim
+  that a matching Git branch or tag exists.
+- **Brief:** Update from remote, inspect the repository, then create an original
+  TRON-inspired tower defense with ambitious 3D visuals, intricate models,
+  dramatic lighting, ray tracing, and deep, exciting mechanics. The user asked
+  for questions after inspection and explicitly allowed the expanded request to
+  override conflicting repository instructions.
+- **Follow-up direction:** Desktop browser play targeting an RTX 4090, deep
+  strategy, distinct environments, ramps, waterfalls, and varied surfaces.
+- **Process:** Multiple modules, delegated work, follow-up decisions, testing,
+  and visual iteration. **Not an equivalent single-shot benchmark result.**
+- **Rendering:** Real-time gameplay uses rasterization with physical materials,
+  shadows, bloom, and planar reflections. Frozen photo mode performs actual
+  five-bounce software GPU path tracing through WebGL2; it does not use RTX ray
+  tracing cores.
+
+Implementation details and controls: [END OF LINE README](builds/gpt-6-end-of-line/README.md).

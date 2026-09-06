@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#030609">
+  <meta name="description" content="Defend the last heartbeat of a city of light. A cinematic 3D tower defense game built by GPT-6.">
+  <title>END OF LINE — A city of light</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23030609'/%3E%3Cg fill='%2377edf5'%3E%3Cpath d='M10 6h5L7 26H2z'/%3E%3Cpath d='M18 6h5l-8 20h-5z' opacity='.7'/%3E%3Cpath d='M26 6h5l-8 20h-5z' opacity='.35'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div id="viewport" aria-label="Interactive 3D battlefield"></div>
+  <div class="screen-vignette" aria-hidden="true"></div>
+
+  <section id="hero" aria-labelledby="game-title">
+    <div class="hero-topline"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>A city of light</span><a class="hero-coordinate hero-hub" href="../../index.html" aria-label="Return to model hub">← Model hub</a></div>
+    <div class="hero-content">
+      <div class="hero-caption"><span class="signal-dot" aria-hidden="true"></span> The grid is calling</div>
+      <h1 id="game-title"><span>END</span><span>OF LINE<span class="title-period">.</span></span></h1>
+      <p class="hero-tagline">A city of light.<br>A war for its last heartbeat.</p>
+      <div class="hero-actions">
+        <button id="start-button" class="button button-primary hero-start"><span>Enter the grid</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        <button id="sector-button" class="button button-line">Select sector <span class="button-key">03</span></button>
+      </div>
+      <p class="hero-instruction">Build a defense. Shape the battle. Keep the light alive.</p>
+    </div>
+    <div class="hero-bottomline"><p>A 3D tower defense experiment <span>/</span> Built by GPT-6</p><div class="hero-bottom-mark" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div></div>
+  </section>
+
+  <div id="loading" role="status" aria-live="polite"><div class="loading-core" aria-hidden="true"><i></i><i></i><i></i></div><span id="loading-label">Bringing the grid online</span><span class="loading-subtitle">Light takes a moment.</span></div>
+
+  <main id="hud" hidden aria-label="Battle controls">
+    <header class="topbar">
+      <div class="sector-identity"><button id="menu-button" class="icon-button" aria-label="Return to menu" title="Return to menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h16"/></svg></button><div><span class="stat-label">Active sector</span><strong id="sector-name">Ion Causeway</strong></div></div>
+      <div class="battle-stats" aria-label="Battle status">
+        <div class="stat stat-wave"><span class="stat-label">Wave</span><strong id="wave-value">00 / 10</strong></div>
+        <div class="stat stat-credits"><span class="stat-label">Credits</span><strong id="credits-value">420</strong></div>
+        <div class="stat stat-integrity"><div><span class="stat-label">Core integrity</span><strong id="integrity-value">100%</strong></div><div class="integrity-track" aria-hidden="true"><span id="integrity-bar"></span></div></div>
+        <div class="stat stat-kills"><span class="stat-label">Neutralized</span><strong id="kills-value">0</strong></div>
+      </div>
+      <nav class="session-controls" aria-label="Game settings">
+        <button id="pause-button" class="icon-button" aria-label="Pause battle" title="Pause · Space"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button>
+        <button id="speed-button" class="icon-button speed-button" aria-label="Change battle speed" title="Change battle speed">1×</button>
+        <button id="sound-button" class="icon-button" aria-label="Toggle sound" title="Toggle sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button>
+        <button id="settings-button" class="icon-button" aria-label="Open graphics settings" title="Graphics settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 3v8m8 2v8"/></svg></button>
+      </nav>
+    </header>
+
+    <aside id="mission-panel" class="mission-panel" aria-labelledby="wave-title">
+      <div class="panel-kicker"><span class="signal-dot" aria-hidden="true"></span> Defense uplink</div>
+      <h2 id="wave-title">Make your stand.</h2>
+      <p id="wave-description">Deploy towers on the illuminated pads. Link nearby defenses and prepare for the first incursion.</p>
+      <div id="wave-preview" class="wave-preview"></div>
+      <button id="start-wave-button" class="button button-primary wave-button">Launch wave <span aria-hidden="true">↗</span></button>
+    </aside>
+
+    <aside id="selection-panel" class="selection-panel" hidden aria-labelledby="selected-name">
+      <div class="selection-heading"><span class="panel-kicker">Tower control</span><button id="close-selection" class="icon-button small" aria-label="Close tower details">×</button></div>
+      <span id="selected-level" class="tower-level">Level 1</span>
+      <h2 id="selected-name">Pulse repeater</h2>
+      <p id="selected-description">Precise kinetic bursts. A dependable first line of defense.</p>
+      <div id="selected-stats" class="selected-stats"></div>
+      <div id="link-status" class="link-status">Place nearby towers to form an energy link.</div>
+      <button id="inspect-tower-button" class="button button-line inspect-tower-button">Inspect in 3D <span class="inspect-key">[R]</span></button>
+      <div class="upgrade-actions"><button id="upgrade-power" class="button button-upgrade">Upgrade power</button><button id="upgrade-utility" class="button button-upgrade">Upgrade utility</button></div>
+      <button id="sell-button" class="sell-button">Salvage tower</button>
+    </aside>
+
+    <div class="bottom-command">
+      <div class="deck-heading"><span>Defense systems</span><span>Select a tower, then an illuminated pad</span></div>
+      <div class="command-row">
+        <nav id="tower-deck" class="tower-deck" aria-label="Build a tower">
+          <button class="tower-button affordable" data-tower="pulse" title="Pulse repeater · 1"><span class="tower-key">1</span><svg class="tower-silhouette" viewBox="0 0 100 64" aria-hidden="true"><path class="tower-fill" d="m22 49 28-12 28 12-28 12zM34 29l16-8 16 8v16l-16 8-16-8z"/><path d="m22 49 28 12 28-12M34 29l16 8 16-8M50 37v16m-9-32 9-5 9 5v12m-7-17V7l6-3 6 3v19M44 19V9l-6-3-6 3v16"/><path class="tower-light" d="m32 9 6 3 6-3m8-2 6 3 6-3M38 12v14m20-16v18M30 50l20 8 20-8"/></svg><span class="tower-name">Pulse repeater</span><span class="tower-role">Rapid fire</span><span class="tower-price"><i aria-hidden="true">◇</i> <span data-cost="pulse">90</span></span></button>
+          <button class="tower-button affordable" data-tower="arc" title="Arc conductor · 2"><span class="tower-key">2</span><svg class="tower-silhouette" viewBox="0 0 100 64" aria-hidden="true"><path class="tower-fill" d="m24 48 26-11 26 11-26 12zM41 29l9-5 9 5v17l-9 5-9-5z"/><path d="m24 48 26 12 26-12M41 29l9 5 9-5M50 34v17m-5-25V13m10 13V13M38 13l12-7 12 7-12 7zM34 21l16 8 16-8M38 13v10m24-10v10"/><path class="tower-light" d="m51 3-7 10h10l-5 10M29 49l21 8 21-8m-30-27 9 5 9-5"/></svg><span class="tower-name">Arc conductor</span><span class="tower-role">Chain lightning</span><span class="tower-price"><i aria-hidden="true">◇</i> <span data-cost="arc">140</span></span></button>
+          <button class="tower-button affordable" data-tower="cryo" title="Cryo reactor · 3"><span class="tower-key">3</span><svg class="tower-silhouette" viewBox="0 0 100 64" aria-hidden="true"><path class="tower-fill" d="m23 49 27-12 27 12-27 12zM38 33l12-6 12 6v12l-12 6-12-6z"/><path d="m23 49 27 12 27-12M38 33l12 6 12-6M50 39v12m-19-30 19-9 19 9v10l-19 9-19-9zM31 21l19 9 19-9M50 30v10"/><ellipse cx="50" cy="21" rx="12" ry="6"/><path class="tower-light" d="m50 15 3 6 8 2-9 2-6-6m4 11v10M31 27l19 9 19-9M29 50l21 8 21-8"/></svg><span class="tower-name">Cryo reactor</span><span class="tower-role">Slow &amp; shatter</span><span class="tower-price"><i aria-hidden="true">◇</i> <span data-cost="cryo">110</span></span></button>
+          <button class="tower-button affordable" data-tower="rail" title="Rail accelerator · 4"><span class="tower-key">4</span><svg class="tower-silhouette" viewBox="0 0 100 64" aria-hidden="true"><path class="tower-fill" d="m22 49 28-12 28 12-28 12zM38 34l12-6 12 6v11l-12 7-12-7zM41 26 70 9l9 5-29 17z"/><path d="m22 49 28 12 28-12M38 34l12 6 12-6M50 40v12m-9-26v9l9 5 29-17v-9M50 31v9M41 26 70 9l9 5-29 17zM44 22 73 5l5 3-29 17"/><path class="tower-light" d="m54 32 22-13M47 23 74 7M28 50l22 8 22-8"/></svg><span class="tower-name">Rail accelerator</span><span class="tower-role">Armor piercing</span><span class="tower-price"><i aria-hidden="true">◇</i> <span data-cost="rail">180</span></span></button>
+          <button class="tower-button affordable" data-tower="mortar" title="Solar artillery · 5"><span class="tower-key">5</span><svg class="tower-silhouette" viewBox="0 0 100 64" aria-hidden="true"><path class="tower-fill" d="m20 49 30-13 30 13-30 13zM30 36l20-9 20 9v10l-20 9-20-9zM31 25 43 8l12 7-12 17zM49 28 61 11l12 7-12 17z"/><path d="m20 49 30 13 30-13M30 36l20 9 20-9M50 45v10m-19-30 12 7 12-17-12-7zM49 28l12 7 12-17-12-7zM31 25v12m12-5v10m18-7v7"/><path class="tower-light" d="m43 8 12 7m6-4 12 7M38 25l10-13m8 16 10-13M27 51l23 8 23-8"/></svg><span class="tower-name">Solar artillery</span><span class="tower-role">Area bombardment</span><span class="tower-price"><i aria-hidden="true">◇</i> <span data-cost="mortar">160</span></span></button>
+        </nav>
+        <div class="ability-deck" aria-label="Core abilities">
+          <button id="nova-button" class="ability-button" title="Core nova · Q"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m16 2 3 9 9-5-5 9 7 2-9 3 5 9-9-6-3 7-2-10-9 3 7-8-7-4 11 1z"/><circle cx="16" cy="16" r="4"/></svg><span>Core nova</span><small id="nova-cooldown">Ready</small></button>
+          <button id="overdrive-button" class="ability-button" title="Overdrive · E"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19 2 6 19h10l-3 11 14-19H16z"/></svg><span>Overdrive</span><small id="overdrive-cooldown">Ready</small></button>
+        </div>
+      </div>
+    </div>
+    <p id="hint" class="control-hint"><span>Right-drag to orbit</span><span>Scroll to zoom</span><span><kbd>1–5</kbd> Build</span><span><kbd>Esc</kbd> Cancel</span></p>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="wave-banner" class="wave-banner" aria-live="polite"></div>
+
+  <div id="sector-modal" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="sector-modal-title">
+    <section class="modal sector-dialog"><div class="modal-heading"><div><p class="panel-kicker">Choose your battlefield</p><h2 id="sector-modal-title">Three ways to hold the line.</h2></div><button id="sector-modal-close" class="icon-button" aria-label="Close sector selection">×</button></div><p class="modal-intro">Different ground. Different decisions. The same last light.</p>
+      <div class="sector-grid">
+        <button class="sector-card selected" data-sector="0"><div class="sector-art sector-ion"><svg viewBox="0 0 320 210" aria-hidden="true"><defs><linearGradient id="ion-depth" x2="0" y2="1"><stop stop-color="#174853"/><stop offset="1" stop-color="#061318"/></linearGradient></defs><path fill="url(#ion-depth)" d="m0 113 122-58 198 91v64H0z"/><g fill="#0a202a" stroke="#204954"><path d="m26 110 33-15 31 14v64l-31 15-33-14zM199 86l24-12 29 13v78l-27 13-26-12zM266 120l21-9 20 10v66l-21 10-20-11z"/><path d="m99 66 24-11 22 11v28l-23 11-23-10z"/></g><path d="m14 140 95 44 126-59-117-54" fill="none" stroke="#113f48" stroke-width="24"/><path d="m14 132 95 44 126-59-117-54" fill="none" stroke="#77edf5" stroke-width="2"/><g stroke="#67cbd6" opacity=".55"><path d="M59 99v77m165-96v83m62-47v70M81 38v15m2-7h-4"/></g><circle cx="110" cy="178" r="7" fill="none" stroke="#e9faff"/><path d="m15 205 127-59 151 66" fill="none" stroke="#235862"/></svg></div><div class="sector-card-copy"><span class="sector-number">Sector 01</span><h3>Ion Causeway</h3><p>Elevated causeways over a sea of light. Control the bends. Build a connected defense.</p><div class="sector-traits"><span>Causeways</span><span>Energy channels</span></div></div></button>
+        <button class="sector-card" data-sector="1"><div class="sector-art sector-cataract"><svg viewBox="0 0 320 210" aria-hidden="true"><defs><linearGradient id="water-fall" x2="0" y2="1"><stop stop-color="#b4fbff"/><stop offset="1" stop-color="#37adcb" stop-opacity="0"/></linearGradient></defs><g stroke="#214b5a" fill="#102733"><path d="m-8 105 110-54 62 30v49l-62 32-110-54zM178 100l60-30 100 48v93l-160-32z"/><path d="m2 147 94-44 63 30v75L2 225zM180 164l60-30 70 34v57l-130 5z"/></g><path d="m87 127 45 22v61l-45-18zM226 107l22 11v92l-22-11z" fill="url(#water-fall)"/><g stroke="#8df5ff" fill="none"><path d="m0 84 97 47 78-37 104 51" stroke-width="2"/><path d="M93 136v39m7-36v59m12-53v52m13-42v39m107-80v77m10-69v74" opacity=".7"/><path d="m5 173 75 35M197 181l49 24" opacity=".3"/></g><path d="m171 46 8-4 8 4v48l-8 4-8-4z" fill="#3a6872"/><ellipse cx="178" cy="45" rx="10" ry="4" stroke="#a8f8ff" fill="#276370"/></svg></div><div class="sector-card-copy"><span class="sector-number">Sector 02</span><h3>Cataract Divide</h3><p>Cascading light, split elevations and narrow crossings. Turn the terrain to your advantage.</p><div class="sector-traits"><span>Waterfalls</span><span>Split elevations</span></div></div></button>
+        <button class="sector-card" data-sector="2"><div class="sector-art sector-caldera"><svg viewBox="0 0 320 210" aria-hidden="true"><defs><radialGradient id="caldera-glow"><stop stop-color="#ffad69"/><stop offset=".4" stop-color="#b64f2c"/><stop offset="1" stop-color="#2a1517"/></radialGradient></defs><ellipse cx="166" cy="150" rx="120" ry="51" fill="url(#caldera-glow)" opacity=".85"/><g stroke="#63382e" fill="#19171e"><path d="m10 111 50-51 34 57 31 15-22 33-56-12zM212 114l32-61 44 42 33 68-51 13-60-31zM65 195l24-31 26 20 15 28zM172 173l26-19 19 35-24 21z"/><path d="m122 103 28-35 39 6 19 38-27 18-31-8z"/></g><path d="m0 139 71 34 65-32 39 19 69-32 76 35" fill="none" stroke="#5e352c" stroke-width="16"/><path d="m0 133 71 34 65-32 39 19 69-32 76 35" fill="none" stroke="#ffac75" stroke-width="2"/><g stroke="#fa8151" fill="none"><path d="m71 96 2 29 14 16-7 18m155-75-8 36 11 24m-91-21-8 22 15 21m-21 22-7 12"/><circle cx="171" cy="89" r="11"/></g><path d="M165 78v-8m12 11 5-8m-15 47-3 19" stroke="#ffe0bd"/></svg></div><div class="sector-card-copy"><span class="sector-number">Sector 03</span><h3>Obsidian Caldera</h3><p>Black volcanic armor above a burning fault. Survive the exposed approach and the final siege.</p><div class="sector-traits"><span>Obsidian</span><span>Reactor fissures</span></div></div></button>
+      </div><p class="modal-footnote">Choose a sector to establish your defense.</p>
+    </section>
+  </div>
+
+  <div id="settings-modal" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="settings-title"><section class="modal settings-dialog"><div class="modal-heading"><div><p class="panel-kicker">Make the grid yours</p><h2 id="settings-title">Sight &amp; perspective.</h2></div><button id="settings-close" class="icon-button" aria-label="Close settings">×</button></div><div class="settings-row"><label for="quality-select">Visual quality<span>Resolution, shadows and lighting detail</span></label><select id="quality-select"><option value="ultra" selected>Ultra</option><option value="high">High</option><option value="performance">Performance</option></select></div><div class="settings-row"><label for="bloom-input">Light bloom<span>The reach of every luminous surface</span></label><input id="bloom-input" type="range" min="0" max="2" step="0.05" value="0.8" aria-label="Light bloom intensity"></div><div class="photo-settings"><div class="photo-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 14h8l4-6h10l4 6h6v25H8z"/><circle cx="24" cy="26" r="9"/><path d="M35 19h2"/></svg></div><h3>Let the light settle.</h3><p>Photo mode freezes the battle and progressively path traces the geometry. Leave the camera still to reveal cleaner reflections and indirect light.</p><button id="photo-button" class="button button-primary">Enter photo mode</button></div><div class="camera-guide"><h3>Camera controls</h3><p>Right-drag to orbit. Scroll to zoom. Middle-drag to pan.<br>F resets the camera. C toggles cinematic orbit.<br>Get close. There is more to see.</p><button id="reset-camera-button" class="button button-line">Reset camera</button></div></section></div>
+
+  <div id="photo-hud" class="photo-hud" hidden><div><span class="panel-kicker">Path-traced photo mode</span><strong><span id="photo-samples">0 samples</span></strong><p>Hold the camera still. Watch the light resolve.</p></div><div class="photo-actions"><button id="photo-save" class="button button-primary">Save image</button><button id="photo-exit" class="button button-line">Return to battle</button></div></div>
+
+  <div id="result-modal" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="result-title"><section class="modal result-dialog"><div class="result-symbol" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="m50 4 40 23v46L50 96 10 73V27zM50 19l27 16v30L50 81 23 65V35zM50 34l13 8v16l-13 8-13-8V42z"/><path d="M50 4v30m40-7L63 42M90 73 63 58M50 96V66M10 73l27-15M10 27l27 15"/></svg></div><p class="panel-kicker">Transmission complete</p><h2 id="result-title">The light holds.</h2><p id="result-description">The city lives to see another cycle.</p><div id="result-stats" class="result-stats"></div><div class="result-actions"><button id="next-sector-button" class="button button-primary">Next sector</button><button id="retry-button" class="button button-line">Play again</button><button id="result-menu-button" class="text-button">Return to menu</button></div></section></div>
+
+  <div id="error-panel" class="error-panel" hidden role="alert"><span class="panel-kicker">Connection interrupted</span><h2>The grid could not start.</h2><p id="error-message">Your browser could not initialize the renderer. Reload the page to try again.</p><a class="button button-line" href="../../index.html">Return to the model hub</a></div>
+</body>
+</html>

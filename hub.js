@@ -84,6 +84,18 @@ const MODELS = [
     available: true,
     href: 'builds/poolside-laguna-default/index.html',
   },
+  {
+    id: 'gpt-6',
+    name: 'GPT-6',
+    title: 'END OF LINE',
+    effort: 'default reasoning effort',
+    date: '2026-09-06',
+    tag: 'gpt-6-end-of-line',
+    custom: true,
+    desc: 'Expanded custom brief, with iteration. A full 3D defense across rising causeways, luminous waterfalls, and volcanic terrain, with linked towers and a path-traced photo mode. Outside the original single-shot benchmark.',
+    available: true,
+    href: 'builds/gpt-6-end-of-line/index.html',
+  },
 ];
 
 function renderModelCards() {
@@ -94,7 +106,7 @@ function renderModelCards() {
     card.className = 'model-card' + (m.available ? '' : ' locked');
     if (m.available) card.href = m.href;
     card.innerHTML =
-      `<span class="mc-badge">${m.available ? 'ONLINE' : 'OFFLINE'}</span>
+      `<span class="mc-badge">${m.available ? (m.custom ? 'CUSTOM RUN' : 'ONLINE') : 'OFFLINE'}</span>
        <h3>${m.name}</h3>
        <div class="mc-id">${m.id}</div>
        <div class="mc-meta">${m.effort} • ${m.date}${m.tag ? ' • ' + m.tag : ''}</div>
