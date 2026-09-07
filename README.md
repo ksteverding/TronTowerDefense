@@ -11,7 +11,8 @@ game (its splash screen and full playable version).
 index.html / hub.js / style.css   ← model-select hub
 builds/
   fable-5-low-effort/             ← Claude Fable 5 (GRID DEFENSE)
-  grok-4-5-xhigh/                 ← Grok 4.5 (LIGHTWALL)
+  grok-4-5-xhigh/                 ← Grok 4.5 (LIGHTWALL, original 2D)
+  grok-4-6-lightwall/             ← Grok 4.6 (LIGHTWALL 3D, custom run)
   glm-5-2-high/                   ← GLM 5.2 (CIRCUIT BREAKER)
   gpt-5-5-default/                ← GPT-5.5 (NEON CONDUIT)
   kimi-k2p7-code/                 ← Kimi K2.7 Code (NEON SENTINEL)
@@ -36,6 +37,13 @@ are in [PROMPT.md](PROMPT.md). The benchmark rules and workflow are in
 | Gemini 3.1 Pro | `gemini-3.1-pro` | high | `builds/gemini-3.1-pro-high/` | `gemini-3.1-pro-high` |
 
 ## Custom builds
+
+**[LIGHTWALL 3D](builds/grok-4-6-lightwall/README.md)** — Grok 4.6, default effort,
+2026-09-06. An expanded, iterated 3D LIGHTWALL: canyon ramps, arena glass, core-gate
+waterfalls, lane-sealing light-walls, unique tower branches, and a path-traced photo
+mode. Outside the original single-shot benchmark. The 2D Grok 4.5 LIGHTWALL is unchanged.
+
+Open [the game](builds/grok-4-6-lightwall/index.html) or select it in the hub.
 
 **[END OF LINE](builds/gpt-6-end-of-line/README.md)** — GPT-6, default effort,
 2026-09-06. An expanded, iterated 3D brief with three terrain-rich sectors, five

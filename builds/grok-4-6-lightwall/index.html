@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#02060c" />
+  <title>LIGHTWALL — Grok 4.6</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2302060c'/%3E%3Cpath d='M4 16h24M16 4v24' stroke='%233de7ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%23ffb347'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="viewport"></div>
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <a class="hub-link" href="../../index.html">← MODELS</a>
+
+  <section id="screen-splash" class="overlay active">
+    <p class="eyebrow">ENCOM SYSTEMS // USER ACCESS</p>
+    <h1 class="hero">LIGHTWALL</h1>
+    <p class="tag">DEFEND THE GRID. DEREZ THE INTRUSION.</p>
+    <p class="model-line">BUILD // GROK 4.6 · CUSTOM RUN</p>
+    <button id="btn-enter" class="btn primary pulse">ENTER THE GRID</button>
+  </section>
+
+  <section id="screen-menu" class="overlay">
+    <div class="panel">
+      <h1>LIGHTWALL</h1>
+      <p class="panel-sub">DEFENSE PROTOCOL v2.0</p>
+      <button id="btn-play" class="btn primary">INITIATE DEFENSE</button>
+      <button id="btn-levels" class="btn">SELECT SECTOR</button>
+      <button id="btn-howto" class="btn">OPERATOR BRIEFING</button>
+      <p class="foot">IDENTITY DISCS ARMED · LIGHT-WALLS ONLINE</p>
+    </div>
+  </section>
+
+  <section id="screen-levels" class="overlay">
+    <div class="panel wide">
+      <h2>SELECT SECTOR</h2>
+      <div class="sector-grid">
+        <button class="sector-card" data-sector="0">
+          <svg viewBox="0 0 280 140" aria-hidden="true"><path fill="#07131d" d="M0 80 80 30 280 70v70H0z"/><path d="M10 90 90 50 170 95 270 72" fill="none" stroke="#3de7ff" stroke-width="3"/><path d="M90 50 90 18 250 18 250 110" fill="none" stroke="#ffb347" stroke-width="2" opacity=".7"/><path d="M140 18v90" stroke="#7dff9a" opacity=".4"/></svg>
+          <span class="sec-num">01</span>
+          <h3>Outlands</h3>
+          <p>Canyon causeway. Seal the mouth. Force the high ion ramp.</p>
+        </button>
+        <button class="sector-card" data-sector="1">
+          <svg viewBox="0 0 280 140" aria-hidden="true"><ellipse cx="140" cy="78" rx="110" ry="48" fill="#08141c" stroke="#ffb347"/><ellipse cx="140" cy="78" rx="58" ry="24" fill="none" stroke="#3de7ff"/><path d="M40 78h200M140 40v76" stroke="#3de7ff" opacity=".35"/><path d="M70 40 140 18 210 40" fill="none" stroke="#9b6bff"/></svg>
+          <span class="sec-num">02</span>
+          <h3>Arena</h3>
+          <p>Inner ring is fast. Raise tunnel walls. Own the glass balcony.</p>
+        </button>
+        <button class="sector-card" data-sector="2">
+          <svg viewBox="0 0 280 140" aria-hidden="true"><path fill="#120814" d="M0 100 60 40 140 70 220 20 280 60v80H0z"/><path d="M8 108 70 88 130 108 200 70 272 90" fill="none" stroke="#ff4d8d" stroke-width="3"/><path d="M70 88 70 20 200 20 200 70" fill="none" stroke="#3de7ff"/><path d="M100 20v90M170 20v80" stroke="#7dff9a" opacity=".5"/></svg>
+          <span class="sec-num">03</span>
+          <h3>Core Gate</h3>
+          <p>The trench is short. Make them climb. Hold the last light.</p>
+        </button>
+      </div>
+      <button id="btn-levels-back" class="btn ghost">← RETURN</button>
+    </div>
+  </section>
+
+  <section id="screen-howto" class="overlay">
+    <div class="panel wide">
+      <h2>OPERATOR BRIEFING</h2>
+      <div class="howto">
+        <div><h3>MISSION</h3><p>Hostile programs run 3D routes toward the Core. Place constructs on pads. Raise light-walls on gate slots to seal a lane and force a longer, more exposed detour.</p></div>
+        <div><h3>CONTROLS</h3><p>1–5 build · 6 wall · click a pad · drag to orbit · arrows orbit · F reset · Q identity throw · E overclock · Space wave/pause · P photo mode.</p></div>
+        <div><h3>STRUCTURES</h3><ul>
+          <li><span class="c-cyan">DISC NODE</span> — rapid identity discs</li>
+          <li><span class="c-amber">LIGHT RIBBON</span> — splash ring burst</li>
+          <li><span class="c-violet">RECOGNIZER</span> — heavy slow beam</li>
+          <li><span class="c-lime">BIT RELAY</span> — slowing aura</li>
+          <li><span class="c-rose">SAILER LANCE</span> — long pierce</li>
+          <li><span class="c-cyan">LIGHT-WALL</span> — gate seal / reroute</li>
+        </ul></div>
+        <div><h3>INTRUDERS</h3><ul>
+          <li><span class="c-cyan">BIT</span> · <span class="c-amber">PROGRAM</span> · <span class="c-lime">CYCLE</span></li>
+          <li><span class="c-violet">TANK</span> · <span class="c-rose">ISO</span></li>
+          <li>Bosses: Grid Stalker, Arena Recognizer, ISO Prime</li>
+        </ul></div>
+      </div>
+      <button id="btn-howto-back" class="btn ghost">← RETURN</button>
+    </div>
+  </section>
+
+  <main id="hud" hidden>
+    <header class="topbar">
+      <div>
+        <span class="stat-label">SECTOR</span>
+        <strong id="hud-sector">OUTLANDS</strong>
+      </div>
+      <div class="stats">
+        <div><span class="stat-label">WAVE</span><strong id="hud-wave">00 / 10</strong></div>
+        <div><span class="stat-label">ENERGY</span><strong id="hud-energy" class="amber">280</strong></div>
+        <div><span class="stat-label">CORE</span><strong id="hud-core" class="rose">20</strong></div>
+        <div><span class="stat-label">DEREZ</span><strong id="hud-kills">0</strong></div>
+      </div>
+      <div class="session">
+        <button id="btn-pause" class="icon-btn" title="Pause">Ⅱ</button>
+        <button id="btn-speed" class="icon-btn">1×</button>
+        <button id="btn-orbit-ccw" class="icon-btn" title="Orbit left · ←">⟲</button>
+        <button id="btn-cam-top" class="icon-btn" title="Top-down view">TOP</button>
+        <button id="btn-orbit-cw" class="icon-btn" title="Orbit right · →">⟳</button>
+        <button id="btn-hud-home" class="icon-btn" title="Reset camera · F">F</button>
+        <button id="btn-sound" class="icon-btn" title="Audio">♪</button>
+        <button id="btn-settings" class="icon-btn" title="Settings">▣</button>
+        <button id="btn-abort" class="icon-btn ghost">ABORT</button>
+      </div>
+    </header>
+
+    <aside id="mission" class="side">
+      <p class="kicker">UPLINK</p>
+      <h2 id="mission-title">Hold the causeway.</h2>
+      <p id="mission-body">Place constructs. Seal a gate when the lane is hot.</p>
+      <div id="wave-preview" class="preview"></div>
+      <button id="btn-wave" class="btn primary">LAUNCH WAVE</button>
+    </aside>
+
+    <aside id="sheet" class="side sheet" hidden>
+      <p class="kicker">CONSTRUCT <button id="btn-sheet-close" class="icon-btn tiny">×</button></p>
+      <span id="sheet-level">LEVEL 1</span>
+      <h2 id="sheet-name">Disc Node</h2>
+      <p id="sheet-desc"></p>
+      <div id="sheet-stats" class="sheet-stats"></div>
+      <div id="sheet-flags" class="flags"></div>
+      <div class="row">
+        <button id="btn-branch-a" class="btn">BRANCH A</button>
+        <button id="btn-branch-b" class="btn">BRANCH B</button>
+      </div>
+      <button id="btn-upgrade" class="btn primary">EVOLVE</button>
+      <button id="btn-inspect" class="btn ghost">INSPECT 3D · R</button>
+      <button id="btn-sell" class="btn danger">DECOM</button>
+    </aside>
+
+    <div class="dock">
+      <div id="tower-dock" class="tower-dock"></div>
+      <div class="ability-dock">
+        <button id="btn-throw" class="ability" title="Identity throw · Q"><span>Q</span> THROW<small id="cd-throw">READY</small></button>
+        <button id="btn-overclock" class="ability" title="Grid overclock · E"><span>E</span> OVERCLOCK<small id="cd-overclock">READY</small></button>
+      </div>
+    </div>
+    <p class="hint"><span>drag orbit</span><span>arrows orbit</span><span>scroll zoom</span><span>F reset</span><span>1–6 build</span><span>P photo</span></p>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <div id="banner" class="banner"></div>
+
+  <div id="settings" class="overlay" hidden>
+    <div class="panel">
+      <h2>SIGHT</h2>
+      <label class="setting">QUALITY
+        <select id="quality-select">
+          <option value="ultra" selected>ULTRA</option>
+          <option value="high">HIGH</option>
+          <option value="performance">PERFORMANCE</option>
+        </select>
+      </label>
+      <label class="setting">BLOOM <input id="bloom-input" type="range" min="0" max="2" step="0.05" value="0.55" /></label>
+      <p class="photo-copy">Photo mode freezes the battle and path-traces the geometry in software on the GPU. It does not use RTX cores. Hold the camera still.</p>
+      <button id="btn-photo" class="btn primary">ENTER PHOTO MODE · P</button>
+      <button id="btn-cam-top-settings" class="btn">TOP-DOWN VIEW</button>
+      <button id="btn-cam-reset" class="btn">RESET CAMERA · F</button>
+      <button id="btn-settings-close" class="btn ghost">CLOSE</button>
+    </div>
+  </div>
+
+  <div id="photo-hud" hidden>
+    <div>
+      <p class="kicker">PATH-TRACED STILL</p>
+      <strong id="photo-samples">0 samples</strong>
+      <p>Hold still. Light accumulates. Not RTX hardware RT.</p>
+    </div>
+    <div>
+      <button id="photo-save" class="btn primary">SAVE IMAGE</button>
+      <button id="photo-exit" class="btn">RETURN · ESC</button>
+    </div>
+  </div>
+
+  <section id="screen-result" class="overlay" hidden>
+    <div class="panel">
+      <h2 id="result-title">SECTOR SECURE</h2>
+      <p id="result-body" class="result-body"></p>
+      <button id="btn-next" class="btn primary">NEXT SECTOR</button>
+      <button id="btn-retry" class="btn">RETRY</button>
+      <button id="btn-result-menu" class="btn ghost">MAIN MENU</button>
+    </div>
+  </section>
+
+  <section id="screen-error" class="overlay" hidden>
+    <div class="panel">
+      <p class="kicker">CONNECTION INTERRUPTED</p>
+      <h2>THE GRID COULD NOT START</h2>
+      <p id="error-message">WebGL2 is required.</p>
+      <a class="btn" href="../../index.html">RETURN TO HUB</a>
+    </div>
+  </section>
+
+  <div id="loading">
+    <div class="load-core" aria-hidden="true"><i></i><i></i><i></i></div>
+    <span>BRINGING THE GRID ONLINE</span>
+  </div>
+
+  <script src="game.js?v=5"></script>
+</body>
+</html>

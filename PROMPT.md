@@ -29,6 +29,27 @@ See [BENCHMARK.md](BENCHMARK.md) for the rules and workflow for adding a new run
 
 ## Custom runs
 
+### LIGHTWALL 3D — Grok 4.6
+
+- **Model:** `grok-4.6`; default reasoning effort; 2026-09-06.
+- **Directory:** `builds/grok-4-6-lightwall/`. Directory label only; no Git branch
+  or tag is implied.
+- **Brief:** Inspect the repository, then improve the Grok LIGHTWALL variant into
+  an original 3D TRON tower defense with ambitious lighting, detailed models,
+  landscape maps, and deep mechanics. The user allowed the expanded request to
+  override conflicting repository instructions and forbade copying code or assets
+  from other builds.
+- **Follow-up direction:** Desktop browser play targeting an RTX 4090, deep
+  strategy, distinct 3D maps with ramps, waterfalls, and varied surfaces.
+  Spectacular 60 fps rasterization plus frozen path-traced photo mode.
+- **Process:** Spec, tests, modules, visual iteration. **Not an equivalent
+  single-shot benchmark result.**
+- **Rendering:** Real-time gameplay uses rasterization with physical materials,
+  shadows, bloom, and volumetric light. Frozen photo mode performs software GPU
+  path tracing through WebGL2; it does not use RTX ray tracing cores.
+
+Implementation details: [LIGHTWALL 3D README](builds/grok-4-6-lightwall/README.md).
+
 ### END OF LINE — GPT-6
 
 - **Model:** `gpt-6`; default reasoning effort; 2026-09-06.

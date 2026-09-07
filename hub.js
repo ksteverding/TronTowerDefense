@@ -85,6 +85,18 @@ const MODELS = [
     href: 'builds/poolside-laguna-default/index.html',
   },
   {
+    id: 'grok-4.6',
+    name: 'Grok 4.6',
+    title: 'LIGHTWALL',
+    effort: 'default reasoning effort',
+    date: '2026-09-06',
+    tag: 'grok-4-6-lightwall',
+    custom: true,
+    desc: 'Expanded custom brief, with iteration. Cinematic 3D LIGHTWALL: canyon ramps, arena glass, core-gate waterfalls, lane-sealing walls, and a path-traced photo mode. Outside the original single-shot benchmark.',
+    available: true,
+    href: 'builds/grok-4-6-lightwall/index.html',
+  },
+  {
     id: 'gpt-6',
     name: 'GPT-6',
     title: 'END OF LINE',
